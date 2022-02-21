@@ -10,7 +10,7 @@ public class GroundTrigger : EggTriggerBase
         _gameOverHandler = gameOverHandler;
     }
 
-    protected override void HandleEgg(Egg egg)
+    protected override void HandleEgg(PhysicsEgg egg)
     {
         _gameOverHandler.TriggerGameOver();
     }

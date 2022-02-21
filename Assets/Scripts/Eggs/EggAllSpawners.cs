@@ -31,8 +31,8 @@ public class EggAllSpawners : MonoBehaviour
             var spawnerPoint = _spawners[spawnerIndex];
 
             var go = Instantiate(_prefab, spawnerPoint.Position, quaternion.identity);
-            var egg = go.GetComponent<Egg>();
-            egg.Init(spawnerIndex + 1, spawnerPoint.Destination);
+            var egg = go.GetComponent<PhysicsEgg>();
+            egg.Init(spawnerIndex, spawnerPoint.Destination);
 
             yield return GetWaitYield();
         }

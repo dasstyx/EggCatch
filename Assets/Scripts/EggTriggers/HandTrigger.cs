@@ -13,7 +13,7 @@
         _pose = pose;
     }
 
-    protected override void HandleEgg(Egg egg)
+    protected override void HandleEgg(PhysicsEgg egg)
     {
         egg.CheckCought(_pose);
         _score.PlusScore();
