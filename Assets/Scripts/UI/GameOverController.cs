@@ -14,6 +14,7 @@ public class GameOverController : MonoBehaviour
 
     private void PopUp(GameOverData data)
     {
+        _window.interactable = true;
         _window.DOFade(1, 1);
         _scoreText.text = data.Score.ToString();
     }
