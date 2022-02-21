@@ -2,16 +2,19 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class RestartController : MonoBehaviour
+namespace EggCatch.UI
 {
-    private void Start()
+    [RequireComponent(typeof(Button))]
+    public class RestartController : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(RestartScene);
-    }
+        private void Start()
+        {
+            GetComponent<Button>().onClick.AddListener(RestartScene);
+        }
 
-    private void RestartScene()
-    {
-        SceneManager.LoadScene(0);
+        private void RestartScene()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

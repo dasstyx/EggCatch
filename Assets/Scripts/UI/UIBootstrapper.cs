@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using EggCatch.GameOver;
+using UnityEngine;
 
-public class UIBootstrapper : MonoBehaviour
+namespace EggCatch.UI
 {
-    [SerializeField] private GameOverController gameOverController;
-    [SerializeField] private CatcherScoreController catcherScoreController;
-
-    public void Init(CatcherScore score, GameOverHandler gameOverHandler)
+    public class UIBootstrapper : MonoBehaviour
     {
-        gameOverController.Init(gameOverHandler);
-        catcherScoreController.Init(score);
+        [SerializeField] private GameOverController gameOverController;
+        [SerializeField] private CatcherScoreController catcherScoreController;
+
+        public void Init(CatcherScore score, GameOverHandler gameOverHandler)
+        {
+            gameOverController.Init(gameOverHandler);
+            catcherScoreController.Init(score);
+        }
     }
 }

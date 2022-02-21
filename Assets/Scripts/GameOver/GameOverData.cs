@@ -1,9 +1,12 @@
-﻿public class GameOverData
+﻿namespace EggCatch.GameOver
 {
-    public GameOverData(int score)
+    public class GameOverData
     {
-        Score = score;
-    }
+        public GameOverData(int score)
+        {
+            Score = score;
+        }
 
-    public int Score { get; }
+        public int Score { get; }
+    }
 }

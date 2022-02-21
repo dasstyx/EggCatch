@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-public interface IEgg
+namespace EggCatch.Eggs
 {
-    void Init(int poseToCatch, Vector2 destination);
-    bool CheckCought(int pose);
+    public interface IEgg
+    {
+        void Init(int poseToCatch, Vector2 destination);
+        bool CheckCought(int pose);
+    }
 }

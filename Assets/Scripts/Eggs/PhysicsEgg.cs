@@ -1,36 +1,39 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PhysicsEgg : MonoBehaviour, IEgg
+namespace EggCatch.Eggs
 {
-    [SerializeField] private float _travelSpeed;
-    private Rigidbody2D _rigidbody;
-    private Vector2 _travelDestination;
-
-    public void Init(int poseToCatch, Vector2 destination)
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class PhysicsEgg : MonoBehaviour, IEgg
     {
-        _travelDestination = destination;
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.isKinematic = true;
-        TravelAlongPath();
-    }
+        [SerializeField] private float _travelSpeed;
+        private Rigidbody2D _rigidbody;
+        private Vector2 _travelDestination;
 
-    public bool CheckCought(int pose)
-    {
-        Destroy(gameObject);
-        return true;
-    }
+        public void Init(int poseToCatch, Vector2 destination)
+        {
+            _travelDestination = destination;
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody.isKinematic = true;
+            TravelAlongPath();
+        }
 
-    private void TravelAlongPath()
-    {
-        transform
-            .DOMove(_travelDestination, _travelSpeed)
-            .onComplete += TurnPhysicsOn;
-    }
+        public bool CheckCought(int pose)
+        {
+            Destroy(gameObject);
+            return true;
+        }
 
-    private void TurnPhysicsOn()
-    {
-        _rigidbody.isKinematic = false;
+        private void TravelAlongPath()
+        {
+            transform
+                .DOMove(_travelDestination, _travelSpeed)
+                .onComplete += TurnPhysicsOn;
+        }
+
+        private void TurnPhysicsOn()
+        {
+            _rigidbody.isKinematic = false;
+        }
     }
 }

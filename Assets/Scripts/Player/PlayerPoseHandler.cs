@@ -1,39 +1,43 @@
-﻿using UnityEngine;
+﻿using EggCatch.EggTriggers;
+using UnityEngine;
 
-public class PlayerPoseHandler : MonoBehaviour, IPlayerPoseHandler
+namespace EggCatch.Player
 {
-    [SerializeField] private GameObject[] _posesObjects;
-    private int _currentPose = 1;
-    private HandTrigger[] _handTriggers;
-
-    public void Init(int initialPose, CatcherScore score)
+    public class PlayerPoseHandler : MonoBehaviour, IPlayerPoseHandler
     {
-        _handTriggers = new HandTrigger[_posesObjects.Length];
+        [SerializeField] private GameObject[] _posesObjects;
+        private int _currentPose = 1;
+        private HandTrigger[] _handTriggers;
 
-        for (var i = 0; i < _posesObjects.Length; i++)
+        public void Init(int initialPose, CatcherScore score)
         {
-            var poseObj = _posesObjects[i];
-            poseObj.SetActive(false);
-            var hand = poseObj.GetComponentInChildren<HandTrigger>();
-            hand.Init(score);
+            _handTriggers = new HandTrigger[_posesObjects.Length];
 
-            _handTriggers[i] = hand;
+            for (var i = 0; i < _posesObjects.Length; i++)
+            {
+                var poseObj = _posesObjects[i];
+                poseObj.SetActive(false);
+                var hand = poseObj.GetComponentInChildren<HandTrigger>();
+                hand.Init(score);
+
+                _handTriggers[i] = hand;
+            }
+
+            UpdatePose(initialPose);
         }
 
-        UpdatePose(initialPose);
-    }
+        public void UpdatePose(int pose)
+        {
+            SetPose(false, _currentPose);
+            SetPose(true, pose);
+            _currentPose = pose;
+        }
 
-    public void UpdatePose(int pose)
-    {
-        SetPose(false, _currentPose);
-        SetPose(true, pose);
-        _currentPose = pose;
-    }
-
-    private void SetPose(bool active, int pose)
-    {
-        var fixedPose = pose - 1;
-        _posesObjects[fixedPose].SetActive(active);
-        _handTriggers[fixedPose].UpdatePos(pose);
+        private void SetPose(bool active, int pose)
+        {
+            var fixedPose = pose - 1;
+            _posesObjects[fixedPose].SetActive(active);
+            _handTriggers[fixedPose].UpdatePos(pose);
+        }
     }
 }

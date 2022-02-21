@@ -1,5 +1,8 @@
-﻿public interface IPlayerPoseHandler
+﻿namespace EggCatch.Player
 {
-    void UpdatePose(int pose);
-    void Init(int initialPose, CatcherScore score);
+    public interface IPlayerPoseHandler
+    {
+        void UpdatePose(int pose);
+        void Init(int initialPose, CatcherScore score);
+    }
 }

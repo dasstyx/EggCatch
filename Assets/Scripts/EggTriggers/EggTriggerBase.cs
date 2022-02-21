@@ -1,15 +1,18 @@
-﻿using System;
+﻿using EggCatch.Eggs;
 using UnityEngine;
 
-public abstract class EggTriggerBase : MonoBehaviour
+namespace EggCatch.EggTriggers
 {
-    private void OnTriggerEnter2D(Collider2D col)
+    public abstract class EggTriggerBase : MonoBehaviour
     {
-        if (col.TryGetComponent<PhysicsEgg>(out var egg))
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            HandleEgg(egg);
+            if (col.TryGetComponent<PhysicsEgg>(out var egg))
+            {
+                HandleEgg(egg);
+            }
         }
-    }
 
-    protected abstract void HandleEgg(PhysicsEgg egg);
+        protected abstract void HandleEgg(PhysicsEgg egg);
+    }
 }

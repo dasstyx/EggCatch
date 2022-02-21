@@ -3,38 +3,41 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = System.Random;
 
-public class EggAllSpawners : MonoBehaviour
+namespace EggCatch.Eggs
 {
-    [SerializeField] private float _spawnCooldown = 1;
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private EggSpawnerPoint[] _spawners;
-    private Game _game;
-
-    public void Init(Game game)
+    public class EggAllSpawners : MonoBehaviour
     {
-        _game = game;
-        StartCoroutine(InfiniteSpawn());
-    }
+        [SerializeField] private float _spawnCooldown = 1;
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private EggSpawnerPoint[] _spawners;
+        private Game _game;
 
-    private WaitForSeconds GetWaitYield()
-    {
-        return new WaitForSeconds(_spawnCooldown);
-    }
-
-    private IEnumerator InfiniteSpawn()
-    {
-        yield return null;
-        var random = new Random();
-        while (_game.IsPlaying)
+        public void Init(Game game)
         {
-            var spawnerIndex = random.Next(0, _spawners.Length);
-            var spawnerPoint = _spawners[spawnerIndex];
+            _game = game;
+            StartCoroutine(InfiniteSpawn());
+        }
 
-            var go = Instantiate(_prefab, spawnerPoint.Position, quaternion.identity);
-            var egg = go.GetComponent<PhysicsEgg>();
-            egg.Init(spawnerIndex, spawnerPoint.Destination);
+        private WaitForSeconds GetWaitYield()
+        {
+            return new WaitForSeconds(_spawnCooldown);
+        }
 
-            yield return GetWaitYield();
+        private IEnumerator InfiniteSpawn()
+        {
+            yield return null;
+            var random = new Random();
+            while (_game.IsPlaying)
+            {
+                var spawnerIndex = random.Next(0, _spawners.Length);
+                var spawnerPoint = _spawners[spawnerIndex];
+
+                var go = Instantiate(_prefab, spawnerPoint.Position, quaternion.identity);
+                var egg = go.GetComponent<PhysicsEgg>();
+                egg.Init(spawnerIndex, spawnerPoint.Destination);
+
+                yield return GetWaitYield();
+            }
         }
     }
 }

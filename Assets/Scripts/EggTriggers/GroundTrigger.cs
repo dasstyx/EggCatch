@@ -1,17 +1,22 @@
-﻿using UnityEngine;
+﻿using EggCatch.Eggs;
+using EggCatch.GameOver;
+using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class GroundTrigger : EggTriggerBase
+namespace EggCatch.EggTriggers
 {
-    private GameOverHandler _gameOverHandler;
-
-    public void Init(GameOverHandler gameOverHandler)
+    [RequireComponent(typeof(Collider2D))]
+    public class GroundTrigger : EggTriggerBase
     {
-        _gameOverHandler = gameOverHandler;
-    }
+        private GameOverHandler _gameOverHandler;
 
-    protected override void HandleEgg(PhysicsEgg egg)
-    {
-        _gameOverHandler.TriggerGameOver();
+        public void Init(GameOverHandler gameOverHandler)
+        {
+            _gameOverHandler = gameOverHandler;
+        }
+
+        protected override void HandleEgg(PhysicsEgg egg)
+        {
+            _gameOverHandler.TriggerGameOver();
+        }
     }
 }

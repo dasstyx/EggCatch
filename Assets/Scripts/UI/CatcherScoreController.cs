@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
-public class CatcherScoreController : MonoBehaviour
+namespace EggCatch.UI
 {
-    [SerializeField] private Text _text;
-
-    public void Init(CatcherScore score)
+    [RequireComponent(typeof(Text))]
+    public class CatcherScoreController : MonoBehaviour
     {
-        score.ScoreUpdate += UpdateCounter;
-    }
+        [SerializeField] private Text _text;
 
-    private void UpdateCounter(int number)
-    {
-        _text.text = number.ToString();
+        public void Init(CatcherScore score)
+        {
+            score.ScoreUpdate += UpdateCounter;
+        }
+
+        private void UpdateCounter(int number)
+        {
+            _text.text = number.ToString();
+        }
     }
 }

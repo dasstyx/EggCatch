@@ -1,13 +1,16 @@
 ﻿using System;
 
-public class CatcherScore
+namespace EggCatch
 {
-    public int Score { get; private set; }
-    public event Action<int> ScoreUpdate;
-
-    public void PlusScore()
+    public class CatcherScore
     {
-        Score++;
-        ScoreUpdate?.Invoke(Score);
+        public int Score { get; private set; }
+        public event Action<int> ScoreUpdate;
+
+        public void PlusScore()
+        {
+            Score++;
+            ScoreUpdate?.Invoke(Score);
+        }
     }
 }

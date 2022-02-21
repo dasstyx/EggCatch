@@ -1,21 +1,26 @@
-﻿public class HandTrigger : EggTriggerBase
+﻿using EggCatch.Eggs;
+
+namespace EggCatch.EggTriggers
 {
-    private int _pose;
-    private CatcherScore _score;
-
-    public void Init(CatcherScore score)
+    public class HandTrigger : EggTriggerBase
     {
-        _score = score;
-    }
+        private int _pose;
+        private CatcherScore _score;
 
-    public void UpdatePos(int pose)
-    {
-        _pose = pose;
-    }
+        public void Init(CatcherScore score)
+        {
+            _score = score;
+        }
 
-    protected override void HandleEgg(PhysicsEgg egg)
-    {
-        egg.CheckCought(_pose);
-        _score.PlusScore();
+        public void UpdatePos(int pose)
+        {
+            _pose = pose;
+        }
+
+        protected override void HandleEgg(PhysicsEgg egg)
+        {
+            egg.CheckCought(_pose);
+            _score.PlusScore();
+        }
     }
 }
